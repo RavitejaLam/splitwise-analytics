@@ -2,6 +2,7 @@
 
 ### Steps to Run
 * clone the project
+* install python3
 * install the required packages
     ```commandline
     pip install -r requirements.txt

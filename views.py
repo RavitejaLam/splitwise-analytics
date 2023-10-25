@@ -37,6 +37,6 @@ def dashboard(months_before=None):
 
     data_group_by_month = data.groupby(['month', 'category']).agg({'cost': 'sum'}).reset_index()
 
-    fig = px.bar(data_group_by_month, x='month', y='cost', color='category', barmode='stack', title="grouped by month")
+    fig = px.bar(data_group_by_month, x='month', y='cost', color='category', barmode='stack')
     graph_html = fig.to_html(full_html=False)
     return render_template('dashboard.html', graph_html=graph_html)
