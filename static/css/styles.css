@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #7BDCB5;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+h1 {
+    font-size: 36px;
+}
+.dashboard-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.dashboard {
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 500px;
+}
+.dashboard-image {
+    flex: 1;
+    max-width: 50%;
+    transition: opacity 0.5s;
+}
+.dashboard-text {
+    flex: 1;
+    padding-left: 20px;
+    text-align: left;
+}
+.dashboard:hover .dashboard-image {
+    opacity: 0.5;
+}
+.dashboard-link {
+    text-decoration: none;
+    color: inherit;
+}

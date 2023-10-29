@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_from_directory
 import logging
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
@@ -11,16 +11,19 @@ views = Blueprint(__name__, "views")
 logging.basicConfig(level=logging.DEBUG)
 
 
+@views.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+
+
 @views.route("/")
 def home():
-    util_instance = Util()
-    client = util_instance.get_splitwise_client()
-    current = client.getCurrentUser()
-    return "Welcome " + current.first_name
+    return render_template("home.html")
 
 
-@views.route("/dashboard/<months_before>")
-def dashboard(months_before=None):
+@views.route("/year_data_grouped_by_month")
+def dashboard():
+    months_before = 12
     util_instance = Util()
     client = util_instance.get_splitwise_client()
     my_id = util_instance.get_my_id()
@@ -39,4 +42,4 @@ def dashboard(months_before=None):
 
     fig = px.bar(data_group_by_month, x='month', y='cost', color='category', barmode='stack')
     graph_html = fig.to_html(full_html=False)
-    return render_template('dashboard.html', graph_html=graph_html)
+    return render_template('year_data_grouped_by_month.html', graph_html=graph_html)
