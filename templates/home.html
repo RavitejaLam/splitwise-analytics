@@ -2,43 +2,47 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Examples</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <header>
-        <h1>Splitwise Analytics</h1>
-    </header>
-    <br>
-    <div class="dashboard-container">
-        <a class="dashboard-link" href="year_data_grouped_by_month">
-            <div class="dashboard">
-                <img class="dashboard-image" src="{{ url_for('static', filename='images/group_by_month_example.png') }}" alt="Grouped by month bar graph">
-                <div class="dashboard-text">
-                    <h2>Spending's Per Month</h2>
-                    <p>This will show the spending's of last 12 months grouped by month.</p>
-                </div>
+<header>
+    <h1>Splitwise Analytics</h1>
+    <a class="login-button" href='/logout'>
+        <button>Logout</button>
+    </a>
+</header>
+<br>
+<div class="dashboard-container">
+    <a class="dashboard-link" href="year_data_grouped_by_month">
+        <div class="dashboard">
+            <img alt="Grouped by month bar graph" class="dashboard-image"
+                 src="{{ url_for('static', filename='images/group_by_month_example.png') }}">
+            <div class="dashboard-text">
+                <h2>Spending's Per Month</h2>
+                <p>This will show the spending's of last 12 months grouped by month.</p>
             </div>
-        </a>
-<!--        <a class="dashboard-link" href="dashboard2.html">-->
-<!--            <div class="dashboard">-->
-<!--                <img class="dashboard-image" src="https://example.com/dashboard2.jpg" alt="Dashboard 2">-->
-<!--                <div class="dashboard-text">-->
-<!--                    <h2>Dashboard 2</h2>-->
-<!--                    <p>Here's another example dashboard with different data visualizations. Click to view more.</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </a>-->
-<!--        <a class="dashboard-link" href="dashboard3.html">-->
-<!--            <div class="dashboard">-->
-<!--                <img class="dashboard-image" src="https://example.com/dashboard3.jpg" alt="Dashboard 3">-->
-<!--                <div class="dashboard-text">-->
-<!--                    <h2>Dashboard 3</h2>-->
-<!--                    <p>This is the third dashboard with additional information. Click to view more.</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </a>-->
-    </div>
+        </div>
+    </a>
+    <!--        <a class="dashboard-link" href="dashboard2.html">-->
+    <!--            <div class="dashboard">-->
+    <!--                <img class="dashboard-image" src="https://example.com/dashboard2.jpg" alt="Dashboard 2">-->
+    <!--                <div class="dashboard-text">-->
+    <!--                    <h2>Dashboard 2</h2>-->
+    <!--                    <p>Here's another example dashboard with different data visualizations. Click to view more.</p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </a>-->
+    <!--        <a class="dashboard-link" href="dashboard3.html">-->
+    <!--            <div class="dashboard">-->
+    <!--                <img class="dashboard-image" src="https://example.com/dashboard3.jpg" alt="Dashboard 3">-->
+    <!--                <div class="dashboard-text">-->
+    <!--                    <h2>Dashboard 3</h2>-->
+    <!--                    <p>This is the third dashboard with additional information. Click to view more.</p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </a>-->
+</div>
 </body>
 </html>

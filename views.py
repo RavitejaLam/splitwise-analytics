@@ -1,11 +1,12 @@
-from flask import Blueprint, render_template, send_from_directory
+from flask import Blueprint, render_template, send_from_directory, abort, redirect, request
 import logging
 from datetime import date, datetime
-from dateutil.relativedelta import relativedelta
+
 import pandas as pd
 import plotly.express as px
+from dateutil.relativedelta import relativedelta
 
-from util import Util
+from util import *
 
 views = Blueprint(__name__, "views")
 logging.basicConfig(level=logging.DEBUG)
@@ -16,17 +17,49 @@ def serve_static(filename):
     return send_from_directory('static', filename)
 
 
+def login_is_required(function):
+    def wrapper(*args, **kwargs):
+        if "access_token" not in session:
+            return abort(401)
+        else:
+            return function()
+
+    return wrapper
+
+
+@views.route("/login")
+def login():
+    authorization_url = get_authorization_url()
+    return redirect(authorization_url)
+
+
+@views.route("/callback")
+def callback():
+    if not session["state"] == request.args["state"]:
+        abort(500)
+    set_access_token(request.args["code"])
+    return redirect("/")
+
+
+@views.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+
 @views.route("/")
 def home():
-    return render_template("home.html")
+    if "access_token" in session:
+        return render_template("home.html")
+    return render_template("welcome.html")
 
 
 @views.route("/year_data_grouped_by_month")
-def dashboard():
+@login_is_required
+def year_data_grouped_by_month():
     months_before = 12
-    util_instance = Util()
-    client = util_instance.get_splitwise_client()
-    my_id = util_instance.get_my_id()
+    client = get_splitwise_client()
+    my_id = get_my_id()
     start_date = date.today() - relativedelta(months=int(months_before))
     expenses = client.getExpenses(dated_after=str(start_date), friend_id=my_id, visible=True, limit=999999)
     df = pd.DataFrame.from_records(vars(o) for o in expenses)
@@ -36,7 +69,7 @@ def dashboard():
     data["month"] = df["date"].apply(
         lambda date: datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m"))
     data["category"] = df["category"].apply(lambda category: category.getName())
-    data["cost"] = df["users"].apply(util_instance.get_my_spending)
+    data["cost"] = df["users"].apply(get_my_spending)
 
     data_group_by_month = data.groupby(['month', 'category']).agg({'cost': 'sum'}).reset_index()
 
