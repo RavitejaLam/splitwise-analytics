@@ -3,17 +3,11 @@ body {
     margin: 0;
     padding: 0;
 }
-header {
-    background-color: #7BDCB5;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
 h1 {
     font-size: 36px;
 }
 .dashboard-container {
-    padding: 20px;
+    padding: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,16 +38,6 @@ h1 {
     text-decoration: none;
     color: inherit;
 }
-.login-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: white;
-    padding: 10px 20px;
-    border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-}
 .es-button {
 	mso-style-priority: 100 !important;
 	text-decoration: none;
@@ -75,8 +59,18 @@ h1 {
 	mso-padding-alt: 0;
 	mso-border-alt: 10px solid #7BDCB5
 }
-.main-div{
+.main-div {
     background-image: url('../images/facets.png');
     background-repeat: repeat-x;
     background-size: auto 100%;
+}
+.header-div {
+    height: 10vh;
+    padding: 10px 40px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-div {
+    height: 10vh;
 }

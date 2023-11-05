@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
+    <title>Home</title>
 </head>
+
 <body>
-<header>
-    <h1>Splitwise Analytics</h1>
-    <a class="login-button" href='/logout'>
-        <button>Logout</button>
-    </a>
-</header>
-<br>
-<div class="dashboard-container">
+<div class="header-div">
+    <a href="/"><img alt="Logo" height="65"
+                     src="{{ url_for('static', filename='images/header.svg') }}"
+                     title="Logo"></a>
+    <a class="es-button" href="/logout">Logout</a>
+</div>
+<div class="main-div dashboard-container">
     <a class="dashboard-link" href="year_data_grouped_by_month">
         <div class="dashboard">
             <img alt="Grouped by month bar graph" class="dashboard-image"
@@ -25,24 +24,50 @@
             </div>
         </div>
     </a>
-    <!--        <a class="dashboard-link" href="dashboard2.html">-->
-    <!--            <div class="dashboard">-->
-    <!--                <img class="dashboard-image" src="https://example.com/dashboard2.jpg" alt="Dashboard 2">-->
-    <!--                <div class="dashboard-text">-->
-    <!--                    <h2>Dashboard 2</h2>-->
-    <!--                    <p>Here's another example dashboard with different data visualizations. Click to view more.</p>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </a>-->
-    <!--        <a class="dashboard-link" href="dashboard3.html">-->
-    <!--            <div class="dashboard">-->
-    <!--                <img class="dashboard-image" src="https://example.com/dashboard3.jpg" alt="Dashboard 3">-->
-    <!--                <div class="dashboard-text">-->
-    <!--                    <h2>Dashboard 3</h2>-->
-    <!--                    <p>This is the third dashboard with additional information. Click to view more.</p>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </a>-->
+    <a class="dashboard-link">
+        <div class="dashboard">
+            <img alt="Nested pie chart graph" class="dashboard-image"
+                 src="{{ url_for('static', filename='images/coming_soon.avif') }}">
+            <div class="dashboard-text">
+                <h2>Nested Pie Chart</h2>
+                <p>This will show the spending's in Nested pie chart. </p>
+            </div>
+        </div>
+    </a>
+    <a class="dashboard-link">
+        <div class="dashboard">
+            <img alt="Rate of Change per category" class="dashboard-image"
+                 src="{{ url_for('static', filename='images/coming_soon.avif') }}">
+            <div class="dashboard-text">
+                <h2>Rate of Change</h2>
+                <p>This will show the at which the spending's rate changes per category. </p>
+            </div>
+        </div>
+    </a>
+    <br><br>
+</div>
+<div class="footer-div">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 91"
+         class="w-full">
+        <path fill="#ACE4D6" d="M349 76.499L286 113V40z"></path>
+        <path fill="#0C3C32" d="M480 74.5L446 94V55z"></path>
+        <path fill="#1CC29F" d="M223 76.5l63 36.5V40zm182 1.999L446 102V55z"></path>
+        <path fill="#137863" d="M169 48v82l71-41z"></path>
+        <path fill="#1CC29F" d="M121 75.499L169 103V48z"></path>
+        <path fill="#373B3F" d="M456 101h-96V46z"></path>
+        <path fill="#52595F" d="M360 46v55h-96z"></path>
+        <path fill="#A473DB" d="M436 93h63V57z"></path>
+        <path fill="#D0B3EB" d="M499 57v36h63z"></path>
+        <path fill="#0C3C32" d="M491 93h84.18V44z"></path>
+        <path fill="#1CC29F" d="M575.18 93h84.179l-84.18-49z"></path>
+        <path fill="#FF2900" d="M601 94h48V66z"></path>
+        <path fill="#FF692C" d="M649 66v28h48z"></path>
+        <path fill="#FF815C" d="M170.385 93h76V49z"></path>
+        <path fill="#FF2900" d="M246.385 49v44h76z"></path>
+        <path fill="#373B3F" d="M166 93H70V38z"></path>
+        <path fill="#52595F" d="M70 38v55h-96z"></path>
+    </svg>
 </div>
 </body>
+
 </html>
