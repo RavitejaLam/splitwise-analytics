@@ -64,6 +64,7 @@ def year_data_grouped_by_month():
     expenses = client.getExpenses(dated_after=str(start_date), friend_id=my_id, visible=True, limit=999999)
     df = pd.DataFrame.from_records(vars(o) for o in expenses)
     df = df.query('payment == False')
+    df = df.query("creation_method != 'debt_consolidation'")
 
     data = pd.DataFrame()
     data["month"] = df["date"].apply(
