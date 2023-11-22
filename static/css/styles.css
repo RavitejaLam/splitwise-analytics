@@ -12,6 +12,10 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
 }
+.graph-container {
+    justify-content: center;
+    padding: 40px;
+}
 .dashboard {
     display: flex;
     background-color: #fff;

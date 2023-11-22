@@ -31,11 +31,11 @@ def get_my_spending(user_expenses):
     return 0
 
 
-def get_my_id():
-    if "id" not in session:
-        client = get_splitwise_client()
-        session["id"] = client.getCurrentUser().getId()
-    return session["id"]
+def update_session_with_current_user_data():
+    client = get_splitwise_client()
+    current_user = client.getCurrentUser()
+    session["id"] = current_user.getId()
+    session["default_currency"] = current_user.getDefaultCurrency()
 
 
 def set_access_token(code):

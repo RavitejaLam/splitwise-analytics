@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, send_from_directory, abort, redirect, request
 import logging
 from datetime import date, datetime
 
 import pandas as pd
 import plotly.express as px
 from dateutil.relativedelta import relativedelta
+from flask import Blueprint, render_template, send_from_directory, abort, redirect, request
 
 from util import *
 
@@ -59,12 +59,13 @@ def home():
 def year_data_grouped_by_month():
     months_before = 12
     client = get_splitwise_client()
-    my_id = get_my_id()
+    update_session_with_current_user_data()
     start_date = date.today() - relativedelta(months=int(months_before))
-    expenses = client.getExpenses(dated_after=str(start_date), friend_id=my_id, visible=True, limit=999999)
+    expenses = client.getExpenses(dated_after=str(start_date), friend_id=session["id"], visible=True, limit=999999)
     df = pd.DataFrame.from_records(vars(o) for o in expenses)
     df = df.query('payment == False')
     df = df.query("creation_method != 'debt_consolidation'")
+    df = df.query("currency_code == '{}'".format(session["default_currency"]))
 
     data = pd.DataFrame()
     data["month"] = df["date"].apply(
@@ -74,6 +75,12 @@ def year_data_grouped_by_month():
 
     data_group_by_month = data.groupby(['month', 'category']).agg({'cost': 'sum'}).reset_index()
 
-    fig = px.bar(data_group_by_month, x='month', y='cost', color='category', barmode='stack')
+    fig = px.bar(data_group_by_month, x='month', y='cost', color='category',
+                 barmode='stack')
+    fig.update_layout(
+        xaxis_title='Month',
+        paper_bgcolor='rgba(0,0,0,0)',
+        yaxis_title='Cost ({})'.format(session["default_currency"])
+    )
     graph_html = fig.to_html(full_html=False)
     return render_template('year_data_grouped_by_month.html', graph_html=graph_html)

@@ -14,8 +14,10 @@
                      title="Logo"></a>
     <a class="es-button" href="/logout">Logout</a>
 </div>
-<div class="main-div dashboard-container" id="plotly-graph">
-    {{ graph_html | safe }}
+<div class="main-div">
+    <div class="graph-container" id="plotly-graph">
+        {{ graph_html | safe }}
+    </div>
 </div>
 <div class="footer-div">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 91"
