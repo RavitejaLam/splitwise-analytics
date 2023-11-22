@@ -11,6 +11,13 @@ Splitwise Analytics is an application designed to enhance your Splitwise experie
 ![home_screenshot](README/home_screenshot.png)
 ![spendings_per_month_screenshot](README/spendings_per_month_screenshot.png)
 
+### FAQ
+
+- **1: What if you have expenses of multiple currencies?** 
+
+  Only default currency expenses are used by this application. Select preferred currency as default currency in your splitwise app and then use splitwise analytics.
+
+
 ### Getting Started
 
 - **Clone the Repository:**
