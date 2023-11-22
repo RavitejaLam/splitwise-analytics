@@ -7,9 +7,8 @@ from splitwise import Splitwise
 load_dotenv()
 
 
-def get_authorization_url():
+def get_authorization_url(redirect_uri):
     client = get_splitwise_client()
-    redirect_uri = "http://localhost/callback"
     url, state = client.getOAuth2AuthorizeURL(redirect_uri)
     session["state"] = state
     return url
@@ -38,8 +37,11 @@ def update_session_with_current_user_data():
     session["default_currency"] = current_user.getDefaultCurrency()
 
 
-def set_access_token(code):
+def set_access_token(code, redirect_uri):
     client = get_splitwise_client()
-    redirect_uri = "http://localhost/callback"
     access_token = client.getOAuth2AccessToken(code, redirect_uri)['access_token']
     session["access_token"] = access_token
+
+
+def get_https_redirect_call_back_url(root_url):
+    return root_url + "callback"

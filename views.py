@@ -29,7 +29,7 @@ def login_is_required(function):
 
 @views.route("/login")
 def login():
-    authorization_url = get_authorization_url()
+    authorization_url = get_authorization_url(get_https_redirect_call_back_url(request.root_url))
     return redirect(authorization_url)
 
 
@@ -37,7 +37,7 @@ def login():
 def callback():
     if not session["state"] == request.args["state"]:
         abort(500)
-    set_access_token(request.args["code"])
+    set_access_token(request.args["code"], get_https_redirect_call_back_url(request.root_url))
     return redirect("/")
 
 
