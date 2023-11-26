@@ -10,7 +10,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
+    permissions:
+      packages: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,10 +26,10 @@ jobs:
         if: steps.tag_name.outputs.version != ''
         run: |
           DOCKER_VERSION=${{ steps.tag_name.outputs.version }}
+          docker login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
           docker build -t ghcr.io/${{ github.repository }}:$DOCKER_VERSION .
           docker tag ghcr.io/${{ github.repository }}:$DOCKER_VERSION ghcr.io/${{ github.repository }}:latest
           docker push ghcr.io/${{ github.repository }}:$DOCKER_VERSION
           docker push ghcr.io/${{ github.repository }}:latest
         env:
           DOCKER_CLI_EXPERIMENTAL: enabled
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
