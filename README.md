@@ -26,6 +26,11 @@ Splitwise Analytics is an application designed to enhance your Splitwise experie
 
 ## Run with docker image
 
+- **Pull Docker image**
+  ```commandline
+  docker pull ghcr.io/ravitejalam/splitwise-analytics:latest
+  ```
+
 - **Run docker image**
   ```commandline
   docker run -p 80:80 -e CONSUMER_KEY=<CONSUMER_KEY> -e CONSUMER_SECRET=<CONSUMER_SECRET> splitwise-analytics:latest
