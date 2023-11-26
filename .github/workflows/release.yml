@@ -30,4 +30,4 @@ jobs:
           docker push ghcr.io/${{ github.repository }}:latest
         env:
           DOCKER_CLI_EXPERIMENTAL: enabled
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
