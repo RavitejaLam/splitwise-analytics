@@ -20,6 +20,24 @@ Splitwise Analytics is an application designed to enhance your Splitwise experie
 
 ### Getting Started
 
+- Set Up OAuth 2.0 Credentials
+  - Visit the Splitwise Developer Portal (https://www.splitwise.com/apps) and create a new application
+  - Obtain your Consumer key and Consumer Secret ![register_your_app](README/register_your_app.png)
+
+## Run with docker image
+
+- **Run docker image**
+  ```commandline
+  docker run -p 80:80 -e CONSUMER_KEY=<CONSUMER_KEY> -e CONSUMER_SECRET=<CONSUMER_SECRET> splitwise-analytics:latest
+  ```
+- **Access the Dashboard:**
+
+   Open your web browser and navigate to http://localhost to access the Splitwise Analytics dashboard.
+
+### OR
+
+## Build and run flask app
+
 - **Clone the Repository:**
   ```bash
   git clone https://github.com/RavitejaLam/splitwise-analytics.git
@@ -29,10 +47,7 @@ Splitwise Analytics is an application designed to enhance your Splitwise experie
     cd splitwise-analytics
     pip install -r requirements.txt
     ```
-- Set Up OAuth 2.0 Credentials
-  - Visit the Splitwise Developer Portal (https://www.splitwise.com/apps) and create a new application
-  - Obtain your Consumer key and Consumer Secret ![register_your_app](README/register_your_app.png)
-  - Set these credentials in the `.env` file
+- Set these credentials in the `.env` file
     ```
     CONSUMER_KEY = "******"
     CONSUMER_SECRET = "******"
