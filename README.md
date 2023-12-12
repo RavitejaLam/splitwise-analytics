@@ -33,7 +33,7 @@ Splitwise Analytics is an application designed to enhance your Splitwise experie
 
 - **Run docker image**
   ```commandline
-  docker run -p -d 8000:80 -e CONSUMER_KEY=<CONSUMER_KEY> -e CONSUMER_SECRET=<CONSUMER_SECRET> splitwise-analytics:latest
+  docker run -d -p 8000:80 -e CONSUMER_KEY=<CONSUMER_KEY> -e CONSUMER_SECRET=<CONSUMER_SECRET> splitwise-analytics:latest
   ```
 - **Access the Dashboard:**
 
